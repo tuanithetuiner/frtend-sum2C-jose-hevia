@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Solicitud de Reserva o Catering</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+        }
+        form {
+            max-width: 750px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        h2 {
+            text-align: center;
+            color: #8B0000;
+        }
+        fieldset {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            padding: 15px;
+        }
+        legend {
+            font-weight: bold;
+            color: #8B0000;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        input, select, textarea {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+        input:focus, select:focus, textarea:focus {
+            border-color: #FFD700;
+            box-shadow: 0 0 5px rgba(255, 215, 0, 0.5);
+            outline: none;
+        }
+        .campo-error {
+            border-color: red;
+        }
+        .campo-ok {
+            border-color: green;
+        }
+        .checkbox-group, .radio-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .checkbox-group label, .radio-group label {
+            display: inline-block;
+            margin-right: 10px;
+        }
+        .actions {
+            text-align: center;
+        }
+        .actions button {
+            padding: 10px 20px;
+            margin: 10px;
+            border: none;
+            border-radius: 4px;
+            font-size: 1rem;
+            cursor: pointer;
+        }
+        .actions .submit {
+            background-color: #8B0000;
+            color: #fff;
+        }
+        .actions .reset {
+            background-color: #ccc;
+            color: #000;
+        }
+        .actions a {
+            display: inline-block;
+            margin-top: 10px;
+            text-decoration: none;
+            color: #8B0000;
+        }
+        @media (max-width: 768px) {
+            input, select, textarea {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <form>
+        <h2>Solicitud de Reserva o Catering</h2>
+
+        <!-- Sección A: Tipo de Solicitud y Datos del Evento -->
+        <fieldset>
+            <legend>Tipo de Solicitud y Datos del Evento</legend>
+            <label>Tipo de solicitud *</label>
+            <div class="radio-group">
+                <label><input type="radio" name="tipo-solicitud" value="reserva" required> Reserva de mesa en el salón</label>
+                <label><input type="radio" name="tipo-solicitud" value="catering" required> Servicio de catering externo</label>
+            </div>
+            <label for="fecha">Fecha del evento o reserva *</label>
+            <input type="date" id="fecha" name="fecha" required>
+            <label for="hora">Hora de inicio *</label>
+            <input type="time" id="hora" name="hora" required>
+            <label for="duracion">Duración estimada del evento</label>
+            <select id="duracion" name="duracion">
+                <option value="1">1 hora</option>
+                <option value="2">2 horas</option>
+                <option value="3">3 horas</option>
+                <option value="4">4 horas o más</option>
+            </select>
+            <label for="descripcion-evento">Nombre o descripción del evento *</label>
+            <input type="text" id="descripcion-evento" name="descripcion-evento" placeholder="Ejemplo: Cumpleaños de 50" required>
+            <label for="tipo-evento">Tipo de evento *</label>
+            <select id="tipo-evento" name="tipo-evento">
+                <option value="casamiento">Casamiento</option>
+                <option value="cumpleaños">Cumpleaños</option>
+                <option value="corporativo">Evento corporativo</option>
+                <option value="desayuno">Desayuno o coffee break</option>
+                <option value="otro">Otro</option>
+            </select>
+            <label for="lugar-evento">Lugar del evento *</label>
+            <input type="text" id="lugar-evento" name="lugar-evento" placeholder="Dirección del evento" required>
+        </fieldset>
+
+        <!-- Sección B: Datos de los Comensales -->
+        <fieldset>
+            <legend>Datos de los Comensales</legend>
+            <label for="adultos">Cantidad de adultos *</label>
+            <input type="number" id="adultos" name="adultos" min="1" max="200" required>
+            <label for="menores">Cantidad de menores</label>
+            <input type="number" id="menores" name="menores" min="0" max="50">
+            <label>Restricciones alimentarias presentes</label>
+            <div class="checkbox-group">
+                <label><input type="checkbox" name="restricciones" value="vegetarianos"> Vegetarianos</label>
+                <label><input type="checkbox" name="restricciones" value="veganos"> Veganos</label>
+                <label><input type="checkbox" name="restricciones" value="sin-tacc"> Sin TACC (celíacos)</label>
+                <label><input type="checkbox" name="restricciones" value="sin-lactosa"> Sin lactosa</label>
+                <label><input type="checkbox" name="restricciones" value="alergias"> Alergias a frutos secos</label>
+                <label><input type="checkbox" name="restricciones" value="otras"> Otras</label>
+            </div>
+            <textarea id="otras-restricciones" name="otras-restricciones" placeholder="Detalle las restricciones (máx. 200 caracteres)" maxlength="200"></textarea>
+            <label><input type="checkbox" name="menu-infantil"> El grupo necesita menú infantil</label>
+            <input type="number" id="cantidad-menu-infantil" name="cantidad-menu-infantil" placeholder="Cantidad de menús infantiles">
+        </fieldset>
+
+        <!-- Sección C: Datos del Cliente y Preferencias -->
+        <fieldset>
+            <legend>Datos del Cliente y Preferencias</legend>
+            <label for="nombre">Nombre completo *</label>
+            <input type="text" id="nombre" name="nombre" required>
+            <label for="email">Correo electrónico *</label>
+            <input type="email" id="email" name="email" required>
+            <label for="confirmar-email">Confirmar correo electrónico *</label>
+            <input type="email" id="confirmar-email" name="confirmar-email" required>
+            <label for="telefono">Teléfono de contacto *</label>
+            <input type="tel" id="telefono" name="telefono" required>
+            <label for="menu-preferido">Tipo de menú preferido *</label>
+            <select id="menu-preferido" name="menu-preferido">
+                <option value="degustacion">Menú degustación</option>
+                <option value="clasico">Menú clásico</option>
+                <option value="infantil">Menú infantil predominante</option>
+                <option value="definir">A definir con el chef</option>
+            </select>
+            <label>Bebidas incluidas *</label>
+            <div class="checkbox-group">
+                <label><input type="checkbox" name="bebidas" value="agua" required> Agua</label>
+                <label><input type="checkbox" name="bebidas" value="gaseosas" required> Gaseosas</label>
+                <label><input type="checkbox" name="bebidas" value="vinos" required> Vinos</label>
+                <label><input type="checkbox" name="bebidas" value="champagne" required> Champagne</label>
+                <label><input type="checkbox" name="bebidas" value="sin-alcohol" required> Sin alcohol</label>
+            </div>
+            <label><input type="checkbox" name="mozos"> Necesita servicio de mozos</label>
+            <label><input type="checkbox" name="mobiliario"> Necesita mobiliario: mesas y sillas</label>
+            <label for="conocio">¿Cómo nos conoció? *</label>
+            <select id="conocio" name="conocio">
+                <option value="redes">Redes sociales</option>
+                <option value="recomendacion">Recomendación</option>
+                <option value="busqueda">Búsqueda web</option>
+                <option value="cliente">Fue cliente antes</option>
+                <option value="otro">Otro</option>
+            </select>
+        </fieldset>
+
+        <!-- Sección D: Observaciones y Confirmación -->
+        <fieldset>
+            <legend>Observaciones y Confirmación</legend>
+            <label for="observaciones">Observaciones o pedidos especiales</label>
+            <textarea id="observaciones" name="observaciones" maxlength="350" placeholder="Escriba aquí sus observaciones"></textarea>
+            <label><input type="checkbox" name="contacto" required> Acepta que BuenSabor se contacte para confirmar disponibilidad *</label>
+            <label><input type="checkbox" name="terminos" required> Acepta los <a href="#">Términos y Condiciones</a> del servicio *</label>
+            <label><input type="checkbox" name="privacidad" required> Acepta la <a href="#">Política de Privacidad</a> *</label>
+        </fieldset>
+
+        <!-- Botones de acción -->
+        <div class="actions">
+            <button type="submit" class="submit">Enviar solicitud</button>
+            <button type="reset" class="reset">Limpiar</button>
+            <a href="index.html">Volver al inicio</a>
+        </div>
+    </form>
+</body>
+</html>
