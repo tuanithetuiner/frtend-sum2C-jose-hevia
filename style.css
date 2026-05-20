@@ -1,0 +1,135 @@
+/* Variables de colores */
+:root {
+    --color-bordo: #8B0000;
+    --color-dorado: #FFD700;
+    --color-crema: #FFF8DC;
+    --color-blanco: #FFFFFF;
+}
+
+/* Tipografías */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Roboto:wght@400;500&display=swap');
+
+body {
+    margin: 0;
+    font-family: 'Roboto', sans-serif;
+    background-color: var(--color-crema);
+    color: var(--color-bordo);
+}
+
+h1, h2, h3 {
+    font-family: 'Playfair Display', serif;
+    color: var(--color-bordo);
+}
+
+header {
+    position: relative;
+    background: url('restaurant-background.jpg') no-repeat center center/cover;
+    color: var(--color-blanco);
+    text-align: center;
+    padding: 100px 20px;
+}
+
+header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Superposición semitransparente */
+    z-index: 1;
+}
+
+header h1, header p, header .cta-buttons {
+    position: relative;
+    z-index: 2;
+}
+
+header h1 {
+    font-size: 3rem;
+    margin: 0;
+}
+
+header p {
+    font-size: 1.5rem;
+    margin: 10px 0 20px;
+}
+
+header .cta-buttons a {
+    text-decoration: none;
+    color: var(--color-blanco);
+    background-color: var(--color-dorado);
+    padding: 10px 20px;
+    border-radius: 5px;
+    margin: 0 10px;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+}
+
+header .cta-buttons a:hover {
+    background-color: var(--color-bordo);
+}
+
+/* Tarjetas del menú y catering */
+.menu-card, .catering-card {
+    border: 1px solid var(--color-dorado);
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.menu-card:hover, .catering-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.menu-card img, .catering-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.menu-card .content, .catering-card .content {
+    padding: 15px;
+    background-color: var(--color-crema);
+}
+
+.menu-card .content h3, .catering-card .content h3 {
+    margin: 0 0 10px;
+    color: var(--color-bordo);
+}
+
+.menu-card .content p, .catering-card .content p {
+    margin: 0 0 10px;
+    font-size: 0.9rem;
+    color: var(--color-bordo);
+}
+
+.menu-card .content .price {
+    font-weight: bold;
+    color: var(--color-dorado);
+}
+
+/* Adaptación a pantallas móviles */
+@media (max-width: 768px) {
+    header {
+        padding: 50px 20px;
+    }
+
+    header h1 {
+        font-size: 2rem;
+    }
+
+    header p {
+        font-size: 1rem;
+    }
+
+    .menu-grid, .catering-grid {
+        display: block;
+    }
+
+    .menu-card, .catering-card {
+        margin-bottom: 20px;
+    }
+}
